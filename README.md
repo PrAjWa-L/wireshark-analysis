@@ -1,0 +1,1 @@
+A documentation on packet capturing using wireshark. I have listed the different Protocols like DNS, ICMP etc. This documentation is more about my understanding of packet capturing and how the protocols work.  
