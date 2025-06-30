@@ -1,0 +1,63 @@
+Network Traffic Protocol Analysis Report
+
+Total Packets Captured: 487
+
+1. DNS (Domain Name System)
+- Filter Used: dns
+- Purpose: Resolve domain names into IP addresses.
+- Findings:
+  - Total Packets: 29 (6.0% of capture)
+  - Standard queries sent to DNS servers like 8.8.8.8
+  - Responses include resolved IPs for domains such as archlinux.org
+  - Indicates normal web browsing or service lookup behavior.
+
+2. TCP (Transmission Control Protocol)
+
+- Filter Used: tcp
+- Purpose: Core transport layer protocol for reliable communication.
+- Findings:
+  - Total Packets: 253 (52.0% of capture)
+  - Includes 3-way handshakes (SYN, SYN/ACK, ACK)
+  - Used in HTTP, TLS, and other application-layer traffic
+
+3. TLS (Transport Layer Security)
+
+- Filter Used: tls
+- Purpose: Secure encrypted communication over HTTPS.
+- Findings:
+  - Total Packets: 49 (10.1% of capture)
+  - TLS handshake observed with Client Hello and Server Hello
+  - Cipher suites negotiated successfully
+  - Suggests access to encrypted web content (e.g., HTTPS websites)
+
+4. ICMP (Internet Control Message Protocol)
+
+- Filter Used: icmp || icmpv6
+- Purpose: Diagnostic messages (e.g., ping, unreachable errors).
+- Findings:
+  - ICMPv4: 30 packets (6.2%)
+  - ICMPv6: 52 packets (10.7%)
+  - Echo requests/replies suggest connectivity tests
+
+5. ARP (Address Resolution Protocol)
+- Filter Used: arp
+- Purpose: Resolves IP addresses to MAC addresses on the local network.
+- Findings:
+  - 48 packets (9.9%)
+  - Broadcasts like "Who has 192.168.18.1?"
+  - Normal local traffic for device discovery
+
+6. mDNS & SSDP (Multicast/Service Discovery)
+- Filters: udp.port == 5353 (mDNS), ssdp
+- Purpose: Discover devices/services (printers, smart TVs) on LAN.
+- Findings:
+  - mDNS: 16 packets (3.3%) — Multicast DNS traffic
+  - SSDP: 4 packets (0.8%) — Universal Plug and Play discovery
+
+7. Apache JServ Protocol v1.3 (AJP13)
+
+- Filter Used: tcp.port == 8009 or protocol contains ajp13
+- Purpose: Backend communication in Java/Tomcat web apps.
+- Findings:
+  - 4 packets (0.8%)
+  - Indicates use of Java server-based communication
